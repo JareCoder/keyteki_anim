@@ -11,6 +11,8 @@ import SquishableCardPanel from './SquishableCardPanel';
 import './Card.scss';
 import { useTranslation } from 'react-i18next';
 
+import { Flipper, Flipped } from 'react-flip-toolkit';
+
 const Card = ({
     canDrag,
     card,
@@ -223,46 +225,50 @@ const Card = ({
             </div>
         ) : null;
         return (
-            <div className='card-frame' ref={drag}>
-                {getDragFrame(image)}
-                {getCardOrdering()}
-                <div
-                    className={cardClass}
-                    onMouseOver={
-                        !disableMouseOver && !isFacedown() && onMouseOver
-                            ? () =>
-                                  onMouseOver({
-                                      image: (
-                                          <CardImage
-                                              card={{
-                                                  ...(card.versusCard || card),
-                                                  location: 'zoom'
-                                              }}
-                                              cardBack={cardBack}
-                                          />
-                                      ),
-                                      size: 'normal'
-                                  })
-                            : undefined
-                    }
-                    onMouseOut={!disableMouseOver && !isFacedown() ? onMouseOut : undefined}
-                    onClick={(event) => onCardClicked(event, card)}
-                >
-                    <div>
-                        <span className='card-name'>{getCardName(card)}</span>
-                        {image}
+            <Flipper flipKey={card.exhausted} spring={'noWobble'}>
+                <Flipped flipId={card.uuid} key={card.uuid} scale>
+                    <div className='card-frame' ref={drag}>
+                        {getDragFrame(image)}
+                        {getCardOrdering()}
+                        <div
+                            className={cardClass}
+                            onMouseOver={
+                                !disableMouseOver && !isFacedown() && onMouseOver
+                                    ? () =>
+                                          onMouseOver({
+                                              image: (
+                                                  <CardImage
+                                                      card={{
+                                                          ...(card.versusCard || card),
+                                                          location: 'zoom'
+                                                      }}
+                                                      cardBack={cardBack}
+                                                  />
+                                              ),
+                                              size: 'normal'
+                                          })
+                                    : undefined
+                            }
+                            onMouseOut={!disableMouseOver && !isFacedown() ? onMouseOut : undefined}
+                            onClick={(event) => onCardClicked(event, card)}
+                        >
+                            <div>
+                                <span className='card-name'>{getCardName(card)}</span>
+                                {image}
+                            </div>
+                        </div>
+                        {shouldShowMenu() && (
+                            <CardMenu
+                                menu={card.menu}
+                                onMenuItemClick={(menuItem) => {
+                                    onMenuItemClick && onMenuItemClick(card, menuItem);
+                                    setShowMenu(!showMenu);
+                                }}
+                            />
+                        )}
                     </div>
-                </div>
-                {shouldShowMenu() && (
-                    <CardMenu
-                        menu={card.menu}
-                        onMenuItemClick={(menuItem) => {
-                            onMenuItemClick && onMenuItemClick(card, menuItem);
-                            setShowMenu(!showMenu);
-                        }}
-                    />
-                )}
-            </div>
+                </Flipped>
+            </Flipper>
         );
     };
 

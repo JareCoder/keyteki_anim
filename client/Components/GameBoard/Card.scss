@@ -44,6 +44,8 @@
             }
         }
         &.exhausted {
+            //transform: rotate(90deg);
+            //TODO: Clean up commented out code
             &.halfSize {
                 left: -3px;
                 top: 3px;
@@ -76,8 +78,9 @@
         }
 
         &.exhausted {
-            left: 19px;
-            top: -20px;
+            //left: 19px;
+            //top: -20px;
+            //transform: rotate(90deg);
             &.halfSize {
                 left: -7px;
                 top: 6px;
@@ -110,8 +113,9 @@
         }
 
         &.exhausted {
-            left: 24px;
-            top: -26px;
+            //left: 24px;
+            //top: -26px;
+            //transform: rotate(90deg);
             &.halfSize {
                 left: -9px;
                 top: 10px;
@@ -143,9 +147,9 @@
     }
 
     &.exhausted {
-        left: 11px;
-        top: -14px;
-        transform: rotate(90deg);
+        //left: 11px;
+        //top: -14px;
+        //transform: rotate(90deg);
         &.halfSize {
             left: -5px;
             top: 4px;
@@ -180,11 +184,14 @@
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     overflow: hidden;
     z-index: $layer-cards;
+    transition: transform 0.5s ease;
 
     &.small {
         &.vertical {
             height: $keyteki-card-sm-height;
             width: $keyteki-card-sm-width;
+            transform: rotate(0deg);
+
             &.halfSize {
                 height: $keyteki-card-halfSize-sm-height;
                 width: $keyteki-card-halfSize-sm-width;
@@ -193,8 +200,10 @@
         }
 
         &.horizontal {
-            height: $keyteki-card-sm-width;
-            width: $keyteki-card-sm-height;
+            height: $keyteki-card-sm-height;
+            width: $keyteki-card-sm-width;
+            transform: rotate(90deg);
+
             &.halfSize {
                 height: $keyteki-card-halfSize-sm-width;
                 width: $keyteki-card-halfSize-sm-height;
@@ -207,6 +216,7 @@
         &.vertical {
             height: $keyteki-card-lg-height;
             width: $keyteki-card-lg-width;
+            transform: rotate(0deg);
 
             &.halfSize {
                 height: $keyteki-card-halfSize-lg-height;
@@ -216,8 +226,11 @@
         }
 
         &.horizontal {
-            height: $keyteki-card-lg-width;
-            width: $keyteki-card-lg-height;
+            height: $keyteki-card-lg-height;
+            width: $keyteki-card-lg-width;
+            margin-left: 20px;
+            margin-right: 20px;
+            transform: rotate(90deg);
 
             &.halfSize {
                 height: $keyteki-card-halfSize-lg-width;
@@ -231,6 +244,7 @@
         &.vertical {
             height: $keyteki-card-xl-height;
             width: $keyteki-card-xl-width;
+            transform: rotate(0deg);
 
             &.halfSize {
                 height: $keyteki-card-halfSize-xl-height;
@@ -240,8 +254,11 @@
         }
 
         &.horizontal {
-            height: $keyteki-card-xl-width;
-            width: $keyteki-card-xl-height;
+            height: $keyteki-card-xl-height;
+            width: $keyteki-card-xl-width;
+            margin-left: 24px;
+            margin-right: 24px;
+            transform: rotate(90deg);
 
             &.halfSize {
                 height: $keyteki-card-halfSize-xl-width;
@@ -254,6 +271,7 @@
     &.vertical {
         height: $keyteki-card-height;
         width: $keyteki-card-width;
+        transform: rotate(0deg);
 
         &.halfSize {
             height: $keyteki-card-halfSize-height;
@@ -263,8 +281,11 @@
     }
 
     &.horizontal {
-        height: $keyteki-card-width;
-        width: $keyteki-card-height;
+        height: $keyteki-card-height;
+        width: $keyteki-card-width;
+        margin-left: 10px;
+        margin-right: 10px;
+        transform: rotate(90deg);
 
         &.halfSize {
             height: $keyteki-card-halfSize-width;
